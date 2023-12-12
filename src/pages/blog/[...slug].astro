@@ -7,9 +7,9 @@ import Layout from "../../layouts/Layout.astro"
 export async function getStaticPaths() {
     const collection = await getCollection("blog")
 
-    let images = (await Astro.glob("/src/assets/images/*.*")).map(
-        (image) => image.default as ImageMetadata
-    )
+    let images: ImageMetadata[] = (
+        await Astro.glob("/src/assets/images/*.*")
+    ).map((image) => image.default as ImageMetadata)
 
     const items = getItems(images, collection)
 
