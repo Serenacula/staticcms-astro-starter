@@ -1,0 +1,42 @@
+---
+import { getEntry } from "astro:content"
+import { getImage } from "../utilities/utilities"
+import "../styles/sakura-normalised.css"
+
+export interface Props {
+    title: string
+}
+
+const generalDetails = await getEntry("general", "general")
+// const themeDetails = await getEntry("theme", "theme")
+
+let images = (await Astro.glob("/src/assets/images/*.*")).map(
+    (image) => image.default as ImageMetadata
+)
+
+const favicon = getImage(images, generalDetails.data.favicon)
+
+const { title } = Astro.props
+
+const fullTitle = title
+    ? `${title} | ${generalDetails.data.title ?? ""}`
+    : generalDetails.data.title ?? ""
+---
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content={generalDetails.data.description} />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href={favicon?.src} />
+        <meta name="generator" content={Astro.generator} />
+        <title>{fullTitle}</title>
+    </head>
+    <body>
+        <!-- this is here to work around a firefox bug, the const itself doesn't mean anything -->
+        <script is:inline>
+            const firefoxFix = 0
+        </script>
+        <slot />
+    </body>
+</html>

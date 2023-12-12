@@ -1,0 +1,38 @@
+<script>
+    import CMS from "@staticcms/core"
+    import { themeConfig } from "../../layouts/themeConfig.cms"
+
+    const url = import.meta.env.SITE
+    const devMode = import.meta.env.DEV
+
+    const backend = devMode
+        ? ({
+              local_backend: true,
+              backend: {
+                  name: "git-gateway",
+              },
+          } as const)
+        : ({
+              backend: {
+                  name: "gitlab", // Apparently github has issues with LFS, so gitlab is preferred
+                  branch: "main",
+                  repo: "",
+                  auth_type: "pkce",
+                  app_id: "",
+              },
+          } as const)
+
+    CMS.init({
+        config: {
+            ...backend,
+            display_url: url,
+            site_url: url,
+            slug: {
+                encoding: "ascii",
+                clean_accents: true,
+            },
+            media_folder: "/src/assets/images",
+            collections: [themeConfig],
+        },
+    })
+</script>

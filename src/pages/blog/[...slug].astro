@@ -1,0 +1,73 @@
+---
+import { getCollection } from "astro:content"
+import { Image } from "astro:assets"
+import { getItems } from "../../utilities/utilities"
+import Layout from "../../layouts/Layout.astro"
+
+export async function getStaticPaths() {
+    const collection = await getCollection("blog")
+
+    let images = (await Astro.glob("/src/assets/images/*.*")).map(
+        (image) => image.default as ImageMetadata
+    )
+
+    const items = getItems(images, collection)
+
+    return items.map((item) => ({
+        params: { slug: item.markdown.slug },
+        props: item,
+    }))
+}
+
+export interface Props {
+    image: ImageMetadata
+    markdown: {
+        body: string
+        data: {
+            title: string
+            creationDate: Date
+            description: true
+            imageAlt?: string
+            image?: string
+        }
+        render: any
+    }
+}
+
+const { image, markdown } = Astro.props
+const { Content } = await markdown.render()
+---
+
+<Layout title={markdown.data.title}>
+    <main>
+        <h1>{markdown.data.title}</h1>
+        <p><i>{markdown.data.creationDate.getFullYear()}</i></p>
+
+        <div class="container">
+            <div>
+                <Content />
+            </div>
+            <div class="image">
+                <Image
+                    quality={20}
+                    src={image}
+                    alt={markdown.data.imageAlt || markdown.data.title}
+                />
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style is:global>
+    .container {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    .image {
+        width: 50%;
+        padding-left: 2rem;
+        border-left: 1px solid black;
+    }
+</style>

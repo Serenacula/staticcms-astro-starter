@@ -1,17 +1,27 @@
 {
-  "name": "staticcms-astro-starter",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.3.1",
-    "astro": "^4.0.3",
-    "typescript": "^5.3.3"
-  }
+    "name": "staticcms-astro-starter",
+    "type": "module",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro check && astro build",
+        "preview": "astro preview",
+        "astro": "astro",
+        "server": "npx @staticcms/proxy-server"
+    },
+    "dependencies": {
+        "@astrojs/check": "^0.3.1",
+        "@astrojs/react": "^3.0.7",
+        "@staticcms/core": "^3.4.6",
+        "astro": "^4.0.3",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "typescript": "^5.3.3"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.4",
+        "@types/react": "^18.0.21",
+        "@types/react-dom": "^18.0.6"
+    }
 }

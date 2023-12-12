@@ -1,16 +1,22 @@
 ---
+import Layout from "../layouts/Layout.astro"
+import { getEntry } from "astro:content"
 
+const homeDetails = await getEntry("general", "general")
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="">
+    <main>
+        <h1>
+            {homeDetails.data.title}
+        </h1>
+        <h3><a href="/admin">Admin Page</a></h3>
+        <h3><a href="/blog">Blog Example</a></h3>
+    </main>
+</Layout>
+
+<style>
+    main {
+        text-align: center;
+    }
+</style>
