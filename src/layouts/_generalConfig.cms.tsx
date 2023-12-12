@@ -1,6 +1,5 @@
 import type { TemplatePreviewProps } from "@staticcms/core";
-import { defineCollection } from "astro/content/runtime";
-import { z } from "astro/zod";
+import { z, defineCollection } from "astro:content";
 
 
 
