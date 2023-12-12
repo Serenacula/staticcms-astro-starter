@@ -33,9 +33,9 @@ const fullTitle = title
         <title>{fullTitle}</title>
     </head>
     <body>
-        <!-- this is here to work around a firefox bug, the const itself doesn't mean anything -->
+        <!-- this is here to work around a firefox unstyled content bug, the const itself doesn't mean anything -->
         <script is:inline>
-            const firefoxFix = 0
+            const fixFirefox = 0
         </script>
         <slot />
     </body>
