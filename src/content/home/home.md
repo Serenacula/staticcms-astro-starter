@@ -1,3 +1,3 @@
 ---
-title: Astro StaticCMS Starter
+title: Astro Static CMS Starter
 ---

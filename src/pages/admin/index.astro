@@ -1,6 +1,10 @@
 <script>
     import CMS from "@staticcms/core"
+    import "@staticcms/core/dist/main.css"
     import { themeConfig } from "../../layouts/_themeConfig.cms"
+    import { generalConfig } from "../../layouts/_generalConfig.cms"
+    import { blogConfig } from "../blog/_blog.cms"
+    import { homeConfig } from "../_home.cms"
 
     const url = import.meta.env.SITE
     const devMode = import.meta.env.DEV
@@ -32,7 +36,8 @@
                 clean_accents: true,
             },
             media_folder: "/src/assets/images",
-            collections: [themeConfig],
+            collections: [generalConfig, themeConfig, homeConfig, blogConfig],
         },
     })
 </script>
+<div></div>

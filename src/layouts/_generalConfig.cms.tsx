@@ -34,7 +34,7 @@ export const generalConfig = {
         {
             name: "general",
             label: "General",
-            file: "/src/content/general/general.mdx",
+            file: "/src/content/general/general.md",
             fields: [
                 {
                     name: "title",

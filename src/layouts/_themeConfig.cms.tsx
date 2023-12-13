@@ -36,7 +36,7 @@ export const themeConfig = {
         {
             name: "theme",
             label: "Theme",
-            file: "/src/content/theme/theme.mdx",
+            file: "/src/content/theme/theme.md",
             fields: [
                 {
                     name: "background",

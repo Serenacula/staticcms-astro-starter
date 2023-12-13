@@ -23,14 +23,14 @@ export const homeCollection = defineCollection({
 })
 
 // StaticCMS config
-export const themeConfig = {
-    name: "themeConfig",
-    label: "Theme",
+export const homeConfig = {
+    name: "homeConfig",
+    label: "Home",
     files: [
         {
-            name: "theme",
-            label: "Theme",
-            file: "/src/content/theme/theme.mdx",
+            name: "home",
+            label: "Home",
+            file: "/src/content/home/home.md",
             fields: [
                 {
                     name: "title",
