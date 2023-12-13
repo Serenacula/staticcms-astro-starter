@@ -52,6 +52,7 @@ const { Content } = await markdown.render()
                     quality={20}
                     src={image}
                     alt={markdown.data.imageAlt || markdown.data.title}
+                    title={markdown.data.imageAlt || markdown.data.title}
                 />
             </div>
         </div>

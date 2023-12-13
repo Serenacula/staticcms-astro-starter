@@ -12,9 +12,11 @@ interface Item {
 }
 
 export function ThemePreview({ entry }: TemplatePreviewProps<Item>) {
+    if (!entry.data) {
+        return <></>
+    }
     return <>
-        <h1>{entry.data?.text}</h1>
-        <p>test!</p>
+        {/* <div style={{background}} /> */}
     </>
 }
 

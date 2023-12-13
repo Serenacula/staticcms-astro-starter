@@ -5,6 +5,7 @@
     import { generalConfig } from "../../layouts/_generalConfig.cms"
     import { blogConfig } from "../blog/_blog.cms"
     import { homeConfig } from "../_home.cms"
+    import { BlogPreview } from "../blog/_blog.cms"
 
     const url = import.meta.env.SITE
     const devMode = import.meta.env.DEV
@@ -39,5 +40,7 @@
             collections: [generalConfig, themeConfig, homeConfig, blogConfig],
         },
     })
+
+    CMS.registerPreviewTemplate("blog", BlogPreview)
 </script>
 <div></div>

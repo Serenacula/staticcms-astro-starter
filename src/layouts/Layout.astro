@@ -8,7 +8,7 @@ export interface Props {
 }
 
 const generalDetails = await getEntry("general", "general")
-// const themeDetails = await getEntry("theme", "theme")
+const themeDetails = await getEntry("theme", "theme")
 
 let images = (await Astro.glob("/src/assets/images/*.*")).map(
     (image) => image.default as ImageMetadata
@@ -40,3 +40,14 @@ const fullTitle = title
         <slot />
     </body>
 </html>
+
+<style
+    define:vars={{
+        text: themeDetails.data.text,
+    }}
+    is:global
+>
+    body {
+        color: --var(text);
+    }
+</style>

@@ -8,30 +8,43 @@ interface Item {
     title: string
     creationDate: Date
     description: string
-    imageAlt: string
-    image: string
+    altText?: string
+    image?: string
     body: string
 }
 
 // Preview Component
 export function BlogPreview({ entry, collection, fields }: TemplatePreviewProps<Item>) {
-    const time = new Date(entry.data?.creationDate!).toLocaleDateString()
+
+    if (!entry.data) {
+        return <></>
+    }
+    const time = new Date(entry.data.creationDate).toLocaleDateString()
 
     const imageField = useMemo(() => fields.find(field => field.name === 'image'), [fields]);
-    const imageUrl = useMediaAsset(entry.data?.image, collection, imageField, entry);
+    const imageUrl = useMediaAsset(entry.data.image, collection, imageField, entry);
     return <>
         <main>
             <h1>{entry.data?.title}</h1>
             <p><i>{`${time}`}</i></p>
 
-            <div>
-                <div dangerouslySetInnerHTML={{ __html: marked(entry.data?.body ?? "") }}>
+            <div style={{
+                display: "flex",
+                justifyContent: "space-between",
+                gap: "2rem"
+            }}>
+                <div dangerouslySetInnerHTML={{ __html: marked(entry.data.body ?? "") }}>
 
                 </div>
-                <div>
+                <div style={{
+                    width: "50%",
+                    paddingLeft: "2rem",
+                    borderLeft: "1px solid black"
+                }}>
                     <img
                         src={imageUrl}
-                        alt={entry.data?.imageAlt || entry.data?.title}
+                        alt={entry.data.altText || entry.data.title}
+                        title={entry.data.altText || entry.data.title}
                     />
                 </div>
             </div>
@@ -83,7 +96,7 @@ export const blogConfig = {
             name: "imageAlt",
             required: false,
             label: "Image Description",
-            widget: "image"
+            widget: "string"
         },
         {
             name: "image",
