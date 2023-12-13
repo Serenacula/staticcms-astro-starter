@@ -1,16 +1,41 @@
 import { z } from "astro/zod"
 import { defineCollection } from "astro:content"
-import type { TemplatePreviewProps } from "@staticcms/core";
+import { useMediaAsset, type TemplatePreviewProps } from "@staticcms/core";
+import { marked } from "marked";
+import { useMemo } from "react";
 
 interface Item {
     title: string
+    creationDate: Date
+    description: string
+    imageAlt: string
+    image: string
+    body: string
 }
 
 // Preview Component
-export function BlogPreview({ entry }: TemplatePreviewProps<Item>) {
+export function BlogPreview({ entry, collection, fields }: TemplatePreviewProps<Item>) {
+    const time = new Date(entry.data?.creationDate!).toLocaleDateString()
+
+    const imageField = useMemo(() => fields.find(field => field.name === 'image'), [fields]);
+    const imageUrl = useMediaAsset(entry.data?.image, collection, imageField, entry);
     return <>
-        <h1>{entry.data?.title}ojojoj</h1>
-        <p>test!</p>
+        <main>
+            <h1>{entry.data?.title}</h1>
+            <p><i>{`${time}`}</i></p>
+
+            <div>
+                <div dangerouslySetInnerHTML={{ __html: marked(entry.data?.body ?? "") }}>
+
+                </div>
+                <div>
+                    <img
+                        src={imageUrl}
+                        alt={entry.data?.imageAlt || entry.data?.title}
+                    />
+                </div>
+            </div>
+        </main>
     </>
 }
 
@@ -28,7 +53,7 @@ export const blogCollection = defineCollection({
 
 // StaticCMS config
 export const blogConfig = {
-    name: "blogConfig",
+    name: "blog",
     label: "Blog Posts",
     label_singular: "Post",
     create: true,
