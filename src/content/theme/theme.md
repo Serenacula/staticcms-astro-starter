@@ -1,5 +1,5 @@
 ---
-text: "#000000"
 background: "#ffffff"
-link: "#000000"
+text: "#000000"
+link: "#4e60f1"
 ---

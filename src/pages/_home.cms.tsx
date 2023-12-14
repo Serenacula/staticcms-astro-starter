@@ -26,6 +26,9 @@ export const homeCollection = defineCollection({
 export const homeConfig = {
     name: "homeConfig",
     label: "Home",
+    editor: {
+        preview: false,
+    },
     files: [
         {
             name: "home",

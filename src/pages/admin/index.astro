@@ -3,9 +3,10 @@
     import "@staticcms/core/dist/main.css"
     import { themeConfig } from "../../layouts/themeConfig.cms"
     import { generalConfig } from "../../layouts/generalConfig.cms"
-    import { blogConfig } from "../blog/blog.cms"
-    import { homeConfig } from "../home.cms"
-    import { BlogPreview } from "../blog/preview.cms"
+    import { blogConfig } from "../blog/_blog.cms"
+    import { homeConfig } from "../_home.cms"
+    import { BlogPreview } from "../blog/_preview.cms"
+    import { ThemePreview } from "../../layouts/themeConfig.cms"
 
     const url = import.meta.env.SITE
     const devMode = import.meta.env.DEV
@@ -42,5 +43,6 @@
     })
 
     CMS.registerPreviewTemplate("blog", BlogPreview)
+    CMS.registerPreviewTemplate("theme", ThemePreview)
 </script>
 <div></div>

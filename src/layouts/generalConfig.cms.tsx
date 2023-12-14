@@ -30,6 +30,9 @@ export const generalCollection = defineCollection({
 export const generalConfig = {
     name: "generalConfig",
     label: "General",
+    editor: {
+        preview: false,
+    },
     files: [
         {
             name: "general",
