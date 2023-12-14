@@ -1,5 +1,5 @@
-import { generalCollection } from "../layouts/generalConfig.cms"
-import { themeCollection } from "../layouts/themeConfig.cms"
+import { generalCollection } from "../layouts/general.cms"
+import { themeCollection } from "../layouts/theme.cms"
 import { homeCollection } from "../pages/_home.cms"
 import { blogCollection } from "../pages/blog/_blog.cms"
 
