@@ -14,7 +14,19 @@ To start the dev server:
 yarn dev
 ```
 
+---
+
 ## Notes
+
+This is a pretty simple overview of how to combine static and astro in a meaningful way. This is just the structure I prefer, but it showcases some of the usecases.
+
+React is used to build the preview elements, and marked is used to build the html from body components.
+
+Setting `body` as the name tells markdown that this property should use the markdown body, rather than headmatter.
+
+---
+
+## Troubleshooting
 
 -   You cannot import from static core during astro's server side compile. Static uses browser-only APIs, and they will crash the compile.
 
@@ -22,3 +34,5 @@ yarn dev
     -   If you see the error `CustomEvent is not defined`, that is because of this problem.
 
 -   Mark .tsx files in pages with underscore to stop astro complaining.
+
+-   React components will not work with static once processed by astro. You will need to exclude their files in astro.config.mjs
